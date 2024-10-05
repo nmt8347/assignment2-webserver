@@ -49,12 +49,12 @@ def webServer(port=13331):
       # file_size = os.path.getsize(filename[1:]).encode()
 
       response = b"HTTP/1.1 200 OK\r\n"
-      access_control_allow_origin = b"Access-Control-Allow-Origin: *"
-      connection = b"Connection: close"
-      date_time = b"Date: " + time
-      server = b"Server: Apache HTTPD on OpenShift" 
+      access_control_allow_origin = b"Access-Control-Allow-Origin: *\r\n"
+      connection = b"Connection: keep-alive\r\n"
+      date_time = b"Date: " + time + b"\r\n"
+      server = b"Server: Apache HTTPD on OpenShift\r\n" 
       content_type = b"Content-Type: text/html; charset=UTF-8\r\n"
-      content_length = b"Content-Length: 151"
+      content_length = b"Content-Length: 151\r\n"
       blank_line = b"\r\n"
 
       http_response = response + access_control_allow_origin + connection + date_time + server + content_type + content_length + blank_line
@@ -87,11 +87,11 @@ def webServer(port=13331):
       time = time.encode('utf-8')
 
       response = b"HTTP/1.1 404 Not Found\r\n"
-      connection = b"Connection: close"
-      date_time = b"Date: " + time
-      server = b"Server: Apache HTTPD on OpenShift" 
+      connection = b"Connection: close\r\n"
+      date_time = b"Date: " + time + b"\r\n"
+      server = b"Server: Apache HTTPD on OpenShift\r\n" 
       content_type = b"Content-Type: text/html; charset=UTF-8\r\n"
-      content_length = b"Content-Length: 0"
+      content_length = b"Content-Length: 0\r\n"
       blank_line = b"\r\n"
 
       http_response = response + connection + date_time + server + content_type + content_length + blank_line
